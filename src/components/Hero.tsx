@@ -5,12 +5,28 @@ export default function Hero() {
   return (
     <section
       id="breath"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center"
     >
-      <p className="mb-2 text-sm uppercase tracking-[0.4em] text-gold/70 animate-shimmer">
+      {/* two soft orbs drifting on either side */}
+      <div
+        className="pointer-events-none absolute left-[6%] top-1/3 h-40 w-40 rounded-full blur-2xl animate-floatSlow sm:h-56 sm:w-56"
+        style={{
+          background:
+            "radial-gradient(circle at 35% 30%, rgba(236,207,138,0.35), rgba(106,82,196,0.18) 55%, transparent 72%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute right-[6%] top-1/2 h-32 w-32 rounded-full blur-2xl animate-floatY sm:h-48 sm:w-48"
+        style={{
+          background:
+            "radial-gradient(circle at 40% 35%, rgba(106,82,196,0.32), rgba(212,175,106,0.16) 55%, transparent 72%)",
+          animationDelay: "1.5s",
+        }}
+      />
+
+      <p className="mb-10 text-xs font-medium uppercase tracking-[0.18em] text-gold/70 sm:text-sm">
         {brand.subtitle}
       </p>
-      <p className="mb-10 font-serif text-lg text-text-dim">{brand.tagline}</p>
 
       <BreathOrb size={340} />
 
