@@ -54,11 +54,6 @@ export default function Hero() {
           Explore the Path
         </a>
       </div>
-
-      {/* quiet scroll cue — a soft pulsing line */}
-      <div className="mt-10 flex justify-center">
-        <span className="h-8 w-px animate-pulse bg-gradient-to-b from-gold/60 to-transparent" />
-      </div>
     </section>
   );
 }
