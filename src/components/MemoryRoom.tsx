@@ -45,7 +45,7 @@ export default function MemoryRoom() {
                   {c.blurb}
                 </p>
               </article>
-            ))
+            </ScrollReveal>
           ))}
         </div>
 
