@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="breath"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-28 text-center"
     >
       {/* two soft orbs drifting on either side */}
       <div
@@ -55,8 +55,8 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* scroll hint */}
-      <div className="absolute bottom-10 flex flex-col items-center gap-2 text-text-faint">
+      {/* scroll hint — in normal flow so it can never overlap the text */}
+      <div className="mt-16 flex flex-col items-center gap-2 text-text-faint">
         <span className="text-xs uppercase tracking-[0.3em]">Scroll to drift</span>
         <span className="h-10 w-px animate-pulse bg-gradient-to-b from-gold/60 to-transparent" />
       </div>
