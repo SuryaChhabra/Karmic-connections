@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="breath"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-28 text-center"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-20 text-center"
     >
       {/* two soft orbs drifting on either side */}
       <div
@@ -24,21 +24,21 @@ export default function Hero() {
         }}
       />
 
-      <p className="mb-10 text-base font-bold uppercase tracking-[0.18em] text-gold sm:text-lg md:text-xl">
+      <p className="mb-6 text-base font-bold uppercase tracking-[0.18em] text-gold sm:text-lg md:text-xl">
         {brand.subtitle}
       </p>
 
-      <BreathOrb size={340} />
+      <BreathOrb size={300} />
 
-      <h1 className="mt-12 max-w-3xl whitespace-pre-line font-serif text-4xl leading-tight text-text sm:text-5xl md:text-6xl">
+      <h1 className="mt-8 max-w-3xl whitespace-pre-line font-serif text-4xl leading-tight text-text sm:text-5xl md:text-6xl">
         {brand.heroHeadline}
       </h1>
 
-      <p className="mt-6 max-w-xl text-base text-text-dim sm:text-lg">
+      <p className="mt-5 max-w-xl text-base text-text-dim sm:text-lg">
         {brand.heroSubtext}
       </p>
 
-      <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+      <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">
         <a
           href={contact.whatsapp}
           target="_blank"
@@ -56,9 +56,9 @@ export default function Hero() {
       </div>
 
       {/* scroll hint — in normal flow so it can never overlap the text */}
-      <div className="mt-16 flex flex-col items-center gap-2 text-text-faint">
+      <div className="mt-10 flex flex-col items-center gap-2 text-text-faint">
         <span className="text-xs uppercase tracking-[0.3em]">Scroll to drift</span>
-        <span className="h-10 w-px animate-pulse bg-gradient-to-b from-gold/60 to-transparent" />
+        <span className="h-8 w-px animate-pulse bg-gradient-to-b from-gold/60 to-transparent" />
       </div>
     </section>
   );
