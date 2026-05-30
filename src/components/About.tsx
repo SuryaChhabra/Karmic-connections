@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import { about } from "@/content/site";
 
@@ -14,13 +15,42 @@ export default function About() {
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal
-          delay={120}
-          className="mx-auto mt-10 max-w-2xl space-y-6 text-center text-lg leading-relaxed text-text-dim"
-        >
-          <p>{about.intro}</p>
-          <p>{about.mission}</p>
-        </ScrollReveal>
+        {/* portrait + intro, drifting together on a cloud */}
+        <div className="mt-12 grid items-center gap-10 md:grid-cols-[0.8fr_1.2fr]">
+          {about.photoSrc ? (
+            <ScrollReveal className="flex justify-center">
+              <div className="relative animate-floatY">
+                {/* soft cosmic glow behind the portrait */}
+                <div
+                  className="absolute -inset-6 -z-10 rounded-full"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(212,175,106,0.25), rgba(106,82,196,0.15) 50%, transparent 72%)",
+                    filter: "blur(18px)",
+                  }}
+                />
+                <div className="overflow-hidden rounded-[2rem] border border-gold/25 shadow-[0_0_50px_rgba(106,82,196,0.3)]">
+                  <Image
+                    src={about.photoSrc}
+                    alt={about.name}
+                    width={300}
+                    height={394}
+                    className="h-auto w-[260px] object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </ScrollReveal>
+          ) : null}
+
+          <ScrollReveal
+            delay={120}
+            className="space-y-6 text-lg leading-relaxed text-text-dim"
+          >
+            <p>{about.intro}</p>
+            <p>{about.mission}</p>
+          </ScrollReveal>
+        </div>
 
         {/* approach as a floating quote on a "cloud" */}
         <ScrollReveal delay={200} className="mx-auto mt-14 max-w-3xl">
