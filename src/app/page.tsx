@@ -17,14 +17,15 @@ export default function Home() {
       <AmbientAudio />
       <Navbar />
       <main id="top" className="relative">
+        {/* The soul road runs down the whole page behind the content.
+            Remove this line + its import to drop the feature. */}
+        <PathJourney />
         {/* Scene 1 — The Breath */}
         <Hero />
         {/* Scene 2 — Drifting on a cloud through the cosmos */}
         <About />
         {/* Scene 3 — The Room of Memories (the concepts + a session) */}
         <MemoryRoom />
-        {/* The soul path — ambient, interactive. Remove this line + its import to drop it. */}
-        <PathJourney />
         <Testimonials />
         <Faq />
         {/* Scene 4 — Return, grounded */}
