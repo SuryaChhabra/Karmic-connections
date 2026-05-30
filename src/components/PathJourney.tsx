@@ -35,15 +35,7 @@ const ROAD_D =
   "C 660 200, 660 380, 300 520 " + // sweep right
   "C -60 660, -60 840, 300 980 " + // sweep left
   "C 660 1120, 660 1300, 300 1440 " + // sweep right
-  "C -30 1640, 80 1820, 300 2000"; // ease back to centre toward the loop
-
-// Standalone infinity loop (figure-eight) in its own 400×240 viewBox.
-const LOOP_D =
-  "M 200 120 " +
-  "C 236 66, 336 78, 336 120 " +
-  "C 336 162, 236 174, 200 120 " +
-  "C 164 66, 64 78, 64 120 " +
-  "C 64 162, 164 174, 200 120";
+  "C -30 1640, 80 1820, 300 2000"; // ease back to centre at the bottom
 
 const INHALE = 4;
 const HOLD = 2;
@@ -57,9 +49,6 @@ export default function PathJourney() {
   const groupRef = useRef<SVGGElement>(null);
   const stepsRef = useRef<SVGGElement>(null);
   const hereRef = useRef<SVGCircleElement>(null);
-  const loopRef = useRef<SVGGElement>(null);
-  const loopStepsRef = useRef<SVGGElement>(null);
-  const loopPathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -69,11 +58,6 @@ export default function PathJourney() {
     const len = rail.getTotalLength();
     const steps = Array.from(
       stepsRef.current?.querySelectorAll<SVGCircleElement>(".step") ?? []
-    );
-    const loopPath = loopPathRef.current;
-    const loopLen = loopPath?.getTotalLength() ?? 0;
-    const loopSteps = Array.from(
-      loopStepsRef.current?.querySelectorAll<SVGCircleElement>(".lstep") ?? []
     );
 
     let mx = 0;
@@ -103,8 +87,6 @@ export default function PathJourney() {
       else breath = 1 - 0.6 * easeInOut((e - INHALE - HOLD) / EXHALE);
       if (groupRef.current)
         groupRef.current.style.opacity = String(0.45 + 0.4 * breath);
-      if (loopRef.current)
-        loopRef.current.style.opacity = String(0.5 + 0.45 * breath);
 
       // cursor sway
       if (groupRef.current && !reduced) {
@@ -121,18 +103,6 @@ export default function PathJourney() {
           s.setAttribute("cy", String(pt.y));
           s.style.opacity = String(Math.sin(phase * Math.PI) * 0.9 * breath);
         });
-
-        // light-steps circling the infinity loop endlessly
-        if (loopPath) {
-          loopSteps.forEach((s, i) => {
-            const speed = 0.08;
-            const phase = (t * speed + i / loopSteps.length) % 1;
-            const pt = loopPath.getPointAtLength(phase * loopLen);
-            s.setAttribute("cx", String(pt.x));
-            s.setAttribute("cy", String(pt.y));
-            s.style.opacity = String(0.9 * breath);
-          });
-        }
       }
 
       // "you are here" glow follows scroll position down the road
@@ -212,35 +182,6 @@ export default function PathJourney() {
             <g ref={stepsRef}>
               {Array.from({ length: 7 }).map((_, i) => (
                 <circle key={i} className="step" r={3.5} fill="#f6e9c6" />
-              ))}
-            </g>
-          </g>
-        </svg>
-      </div>
-
-      {/* ── The infinity loop, shown complete in its own clear band ── */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-6 left-1/2 -z-[5] w-[340px] max-w-[80vw] -translate-x-1/2"
-      >
-        <svg viewBox="0 0 400 240" className="h-auto w-full">
-          <defs>
-            <linearGradient id="pj-loop" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#6a52c4" />
-              <stop offset="50%" stopColor="#eccf8a" />
-              <stop offset="100%" stopColor="#6a52c4" />
-            </linearGradient>
-            <filter id="pj-loop-soft">
-              <feGaussianBlur stdDeviation="1" />
-            </filter>
-          </defs>
-          <g ref={loopRef}>
-            <path d={LOOP_D} fill="none" stroke="url(#pj-loop)" strokeWidth={3} strokeLinecap="round" filter="url(#pj-loop-soft)" transform="translate(-7 0)" />
-            <path d={LOOP_D} fill="none" stroke="url(#pj-loop)" strokeWidth={3} strokeLinecap="round" filter="url(#pj-loop-soft)" transform="translate(7 0)" />
-            <path ref={loopPathRef} d={LOOP_D} fill="none" stroke="rgba(236,207,138,0.55)" strokeWidth={2} strokeLinecap="round" strokeDasharray="2 14" />
-            <g ref={loopStepsRef}>
-              {Array.from({ length: 4 }).map((_, i) => (
-                <circle key={i} className="lstep" r={3.5} fill="#f6e9c6" />
               ))}
             </g>
           </g>

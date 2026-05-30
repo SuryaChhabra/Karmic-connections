@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
+import InfinityLoop from "./InfinityLoop";
 import { contact, newsletter } from "@/content/site";
 
 export default function Begin() {
@@ -22,7 +23,7 @@ export default function Begin() {
     "w-full rounded-xl border border-gold/15 bg-void/40 px-4 py-3 text-text placeholder:text-text-faint transition-colors focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30";
 
   return (
-    <section id="begin" className="relative px-6 pt-20 pb-56">
+    <section id="begin" className="relative px-6 py-20">
       {/* grounding glow — like returning from the journey */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 z-0 h-64 w-64 -translate-x-1/2 rounded-full"
@@ -35,7 +36,9 @@ export default function Begin() {
       />
 
       <div className="relative mx-auto max-w-5xl">
-        <ScrollReveal className="text-center">
+        {/* the journey comes full circle, just above the heading */}
+        <InfinityLoop />
+        <ScrollReveal className="mt-6 text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-gold/70">
             Come Back, Grounded
           </p>
