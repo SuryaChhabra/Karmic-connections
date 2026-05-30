@@ -20,22 +20,23 @@
 
 import { useEffect, useRef } from "react";
 
-// viewBox is 300 wide × 2000 tall; the road winds gently down the centre and
-// finishes in a lemniscate (∞) near the bottom.
-const VBW = 300;
-const VBH = 2000;
+// viewBox is 600 wide × 2200 tall. The road makes BIG sweeping S-curves down
+// the page and finishes in an endless infinity loop (figure-eight that returns
+// to its own crossing point, so there's no visible end).
+const VBW = 600;
+const VBH = 2200;
 const PATH_D =
-  "M 150 0 " +
-  "C 90 160, 210 300, 150 460 " +
-  "C 95 610, 205 760, 150 920 " +
-  "C 100 1070, 200 1220, 150 1380 " +
-  "C 110 1500, 190 1560, 150 1640 " +
-  // infinity loop (figure-eight) near the bottom
-  "C 110 1700, 60 1700, 60 1750 " +
-  "C 60 1800, 110 1800, 150 1760 " +
-  "C 190 1720, 240 1720, 240 1770 " +
-  "C 240 1820, 190 1820, 150 1780 " +
-  "C 120 1750, 150 1900, 150 1980";
+  "M 300 0 " +
+  "C 540 200, 540 380, 300 520 " + // sweep right
+  "C 60 660, 60 840, 300 980 " + // sweep left
+  "C 540 1120, 540 1300, 300 1440 " + // sweep right
+  "C 90 1570, 120 1720, 300 1800 " + // ease toward centre
+  // ── endless infinity loop (returns to crossing point at 300,1960) ──
+  "C 300 1850, 300 1900, 300 1960 " +
+  "C 360 1860, 500 1885, 500 1960 " +
+  "C 500 2035, 360 2060, 300 1960 " +
+  "C 240 1860, 100 1885, 100 1960 " +
+  "C 100 2035, 240 2060, 300 1960";
 
 const INHALE = 4;
 const HOLD = 2;
@@ -131,8 +132,8 @@ export default function PathJourney() {
     >
       <svg
         viewBox={`0 0 ${VBW} ${VBH}`}
-        preserveAspectRatio="xMidYMin slice"
-        className="h-full w-full max-w-2xl"
+        preserveAspectRatio="none"
+        className="h-full w-full max-w-4xl"
       >
         <defs>
           <linearGradient id="pj-rail" x1="0" y1="0" x2="0" y2="1">
