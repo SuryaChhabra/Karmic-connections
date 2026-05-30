@@ -29,12 +29,12 @@ export default function Navbar() {
         </a>
 
         {/* desktop links */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-9 md:flex">
           {nav.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
-                className="text-sm text-text-dim transition-colors hover:text-gold-bright"
+                className="text-base text-text-dim transition-colors hover:text-gold-bright"
               >
                 {item.label}
               </a>
@@ -46,7 +46,7 @@ export default function Navbar() {
           href={contact.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-full border border-gold/40 px-5 py-2 text-sm text-gold-bright transition-all hover:border-gold hover:bg-gold/10 md:inline-block"
+          className="hidden rounded-full border border-gold/40 px-7 py-2.5 text-base text-gold-bright transition-all hover:border-gold hover:bg-gold/10 md:inline-block"
         >
           Write to Us
         </a>
@@ -72,7 +72,7 @@ export default function Navbar() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="text-text-dim transition-colors hover:text-gold-bright"
+                  className="text-base text-text-dim transition-colors hover:text-gold-bright"
                 >
                   {item.label}
                 </a>
@@ -84,7 +84,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="inline-block rounded-full border border-gold/40 px-5 py-2 text-sm text-gold-bright"
+                className="inline-block rounded-full border border-gold/40 px-7 py-2.5 text-base text-gold-bright"
               >
                 Write to Us
               </a>
