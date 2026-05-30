@@ -24,7 +24,7 @@ export default function Hero() {
         }}
       />
 
-      <p className="mb-10 text-xs font-medium uppercase tracking-[0.18em] text-gold/70 sm:text-sm">
+      <p className="mb-10 text-base font-bold uppercase tracking-[0.18em] text-gold sm:text-lg md:text-xl">
         {brand.subtitle}
       </p>
 
