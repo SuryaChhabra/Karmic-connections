@@ -27,10 +27,10 @@ const VBW = 600;
 const VBH = 2200;
 const PATH_D =
   "M 300 0 " +
-  "C 540 200, 540 380, 300 520 " + // sweep right
-  "C 60 660, 60 840, 300 980 " + // sweep left
-  "C 540 1120, 540 1300, 300 1440 " + // sweep right
-  "C 90 1570, 120 1720, 300 1800 " + // ease toward centre
+  "C 660 200, 660 380, 300 520 " + // sweep right (further)
+  "C -60 660, -60 840, 300 980 " + // sweep left (further)
+  "C 660 1120, 660 1300, 300 1440 " + // sweep right (further)
+  "C -30 1570, 60 1720, 300 1800 " + // ease toward centre
   // ── endless infinity loop (returns to crossing point at 300,1960) ──
   "C 300 1850, 300 1900, 300 1960 " +
   "C 360 1860, 500 1885, 500 1960 " +
