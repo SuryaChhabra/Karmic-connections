@@ -55,9 +55,8 @@ export default function Hero() {
         </a>
       </div>
 
-      {/* scroll hint — in normal flow so it can never overlap the text */}
-      <div className="mt-10 flex flex-col items-center gap-2 text-text-faint">
-        <span className="text-xs uppercase tracking-[0.3em]">Scroll to drift</span>
+      {/* quiet scroll cue — a soft pulsing line */}
+      <div className="mt-10 flex justify-center">
         <span className="h-8 w-px animate-pulse bg-gradient-to-b from-gold/60 to-transparent" />
       </div>
     </section>
