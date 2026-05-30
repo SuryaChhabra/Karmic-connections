@@ -30,13 +30,13 @@ const PATH_D =
   "C 660 200, 660 380, 300 520 " + // sweep right (further)
   "C -60 660, -60 840, 300 980 " + // sweep left (further)
   "C 660 1120, 660 1300, 300 1440 " + // sweep right (further)
-  "C -30 1570, 60 1720, 300 1800 " + // ease toward centre
-  // ── endless infinity loop (returns to crossing point at 300,1960) ──
-  "C 300 1850, 300 1900, 300 1960 " +
-  "C 360 1860, 500 1885, 500 1960 " +
-  "C 500 2035, 360 2060, 300 1960 " +
-  "C 240 1860, 100 1885, 100 1960 " +
-  "C 100 2035, 240 2060, 300 1960";
+  "C -30 1620, 80 1780, 300 1850 " + // ease toward centre
+  // ── neat endless infinity loop (symmetric figure-eight, crossing at 300,1955) ──
+  "C 300 1895, 300 1920, 300 1955 " + // lead into crossing
+  "C 336 1905, 432 1915, 432 1955 " + // right loop out
+  "C 432 1995, 336 2005, 300 1955 " + // right loop back to crossing
+  "C 264 1905, 168 1915, 168 1955 " + // left loop out
+  "C 168 1995, 264 2005, 300 1955"; // left loop back to crossing
 
 const INHALE = 4;
 const HOLD = 2;
