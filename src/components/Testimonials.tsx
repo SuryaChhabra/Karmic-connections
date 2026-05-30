@@ -3,7 +3,7 @@ import { testimonials } from "@/content/site";
 
 export default function Testimonials() {
   return (
-    <section id="voices" className="relative px-6 py-32">
+    <section id="voices" className="relative px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <ScrollReveal className="text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-gold/70">
@@ -14,7 +14,7 @@ export default function Testimonials() {
           </h2>
         </ScrollReveal>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <ScrollReveal key={t.author} delay={i * 140}>
               <figure className="flex h-full flex-col rounded-3xl glass p-8">
