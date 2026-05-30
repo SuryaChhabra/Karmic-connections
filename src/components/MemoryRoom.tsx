@@ -3,7 +3,7 @@ import { concepts, plr } from "@/content/site";
 
 export default function MemoryRoom() {
   return (
-    <section id="memories" className="relative px-6 py-32">
+    <section id="memories" className="relative px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <ScrollReveal className="text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-gold/70">
@@ -19,7 +19,7 @@ export default function MemoryRoom() {
         </ScrollReveal>
 
         {/* concepts as floating memory-wisps */}
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {concepts.map((c, i) => (
             <ScrollReveal key={c.title} delay={(i % 3) * 120}>
               <article
@@ -45,12 +45,12 @@ export default function MemoryRoom() {
                   {c.blurb}
                 </p>
               </article>
-            </ScrollReveal>
+            ))
           ))}
         </div>
 
         {/* The session — the deepest memory */}
-        <div className="mt-28 grid items-start gap-12 lg:grid-cols-2">
+        <div className="mt-16 grid items-start gap-12 lg:grid-cols-2">
           <ScrollReveal>
             <h3 className="font-serif text-3xl text-gradient-gold sm:text-4xl">
               {plr.title}
