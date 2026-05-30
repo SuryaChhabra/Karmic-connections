@@ -10,8 +10,8 @@ export const brand = {
   name: "Karmic Connections",
   subtitle: "Hypnotherapy & Past Life Regression",
   tagline: "Heal Yourself",
-  // Logo: drop an image at /public/logo.png and set logoSrc to "/logo.png".
-  logoSrc: "" as string,
+  // The gold K-and-path emblem. Lives at /public/logo.png.
+  logoSrc: "/logo.png" as string,
   heroHeadline: "Heal Yourself.\nJourney Within.\nAwaken Your Soul.",
   heroSubtext:
     "We're here to help you. Discover the root of your fears, patterns, and pain through Hypnotherapy and Past Life Regression.",
