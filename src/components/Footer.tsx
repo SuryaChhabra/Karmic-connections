@@ -1,16 +1,22 @@
+import Image from "next/image";
 import { brand, nav, socials, disclaimer } from "@/content/site";
-import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="relative border-t border-gold/10 px-6 py-16">
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <Logo />
-          <p className="mt-4 text-sm uppercase tracking-[0.3em] text-gold/70">
-            {brand.tagline}
-          </p>
-          <p className="mt-4 max-w-md text-xs leading-relaxed text-text-faint">
+          {/* full logo on a soft cream panel so the maroon text reads clearly */}
+          <div className="inline-block rounded-3xl bg-[#f7f2e9] p-6 shadow-[0_0_40px_rgba(212,175,106,0.15)]">
+            <Image
+              src="/logo_full.png"
+              alt={`${brand.name} — ${brand.subtitle}`}
+              width={1254}
+              height={1254}
+              className="h-auto w-48"
+            />
+          </div>
+          <p className="mt-5 max-w-md text-xs leading-relaxed text-text-faint">
             {disclaimer}
           </p>
         </div>

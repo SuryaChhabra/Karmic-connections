@@ -12,9 +12,9 @@ export default function Logo() {
         <Image
           src={brand.logoSrc}
           alt={`${brand.name} emblem`}
-          width={120}
-          height={135}
-          className="h-9 w-auto drop-shadow-[0_0_10px_rgba(212,175,106,0.35)]"
+          width={292}
+          height={240}
+          className="h-11 w-auto drop-shadow-[0_0_10px_rgba(212,175,106,0.35)]"
           priority
         />
         <span className="font-serif text-lg tracking-wide text-text">
