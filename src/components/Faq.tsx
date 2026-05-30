@@ -8,7 +8,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative px-6 py-32">
+    <section id="faq" className="relative px-6 py-20">
       <div className="mx-auto max-w-3xl">
         <ScrollReveal className="text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-gold/70">
