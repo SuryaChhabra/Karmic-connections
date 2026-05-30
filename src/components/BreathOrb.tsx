@@ -61,7 +61,7 @@ export default function BreathOrb({ size = 320 }: { size?: number }) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const word = phase === "in" ? "Breathe in" : phase === "hold" ? "Hold" : "Release";
+  const word = phase === "in" ? "breathe in" : phase === "hold" ? "hold" : "release";
 
   return (
     <div
@@ -75,7 +75,7 @@ export default function BreathOrb({ size = 320 }: { size?: number }) {
           width: "100%",
           height: "100%",
           background:
-            "radial-gradient(circle, rgba(212,175,106,0.18) 0%, rgba(106,82,196,0.12) 45%, transparent 70%)",
+            "radial-gradient(circle, rgba(212,175,106,0.16) 0%, rgba(106,82,196,0.12) 45%, transparent 70%)",
           animation: "haloPulse 12s ease-in-out infinite",
         }}
       />
@@ -83,25 +83,47 @@ export default function BreathOrb({ size = 320 }: { size?: number }) {
       {/* the orb */}
       <div
         ref={orbRef}
-        className="relative rounded-full"
+        className="relative flex items-center justify-center rounded-full"
         style={{
           width: "62%",
           height: "62%",
           transformOrigin: "center",
           background:
-            "radial-gradient(circle at 38% 32%, #f6e9c6 0%, #eccf8a 18%, #d4af6a 42%, #8a6fd1 78%, #3a2c7a 100%)",
+            "radial-gradient(circle at 36% 30%, #f4e6c0 0%, #e6c987 26%, #cda35f 52%, #7d63bf 82%, #2c2160 100%)",
           boxShadow:
-            "0 0 60px 8px rgba(212,175,106,0.35), 0 0 120px 30px rgba(106,82,196,0.25), inset 0 0 40px rgba(255,255,255,0.25)",
+            "0 0 50px 6px rgba(212,175,106,0.30), 0 0 130px 30px rgba(106,82,196,0.22), inset 0 0 50px rgba(255,255,255,0.18)",
         }}
       >
-        {/* inner sheen */}
+        {/* soft sheen (toned down so it doesn't look flat/cheap) */}
         <div
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              "radial-gradient(circle at 35% 28%, rgba(255,255,255,0.55), transparent 45%)",
+              "radial-gradient(circle at 34% 26%, rgba(255,255,255,0.40), transparent 42%)",
           }}
         />
+        {/* delicate inner ring for a more refined, crafted feel */}
+        <div
+          className="absolute rounded-full"
+          style={{
+            inset: "9%",
+            border: "1px solid rgba(255,248,230,0.28)",
+          }}
+        />
+
+        {/* guidance word — dark ink so it reads on the bright gold centre,
+            with a soft light halo to keep it legible over the violet edge */}
+        <span
+          className="relative font-serif lowercase italic"
+          style={{
+            fontSize: "1.55rem",
+            letterSpacing: "0.12em",
+            color: "#2a2152",
+            textShadow: "0 1px 16px rgba(255,248,230,0.65)",
+          }}
+        >
+          {word}
+        </span>
       </div>
 
       {/* embers rising on exhale */}
@@ -120,14 +142,6 @@ export default function BreathOrb({ size = 320 }: { size?: number }) {
             }}
           />
         ))}
-
-      {/* guidance word in the centre */}
-      <span
-        className="absolute font-serif text-lg uppercase tracking-[0.35em] text-text/80"
-        style={{ textShadow: "0 0 18px rgba(11,10,43,0.9)" }}
-      >
-        {word}
-      </span>
     </div>
   );
 }
