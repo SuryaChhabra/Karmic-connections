@@ -133,7 +133,7 @@ export default function PathJourney() {
       <svg
         viewBox={`0 0 ${VBW} ${VBH}`}
         preserveAspectRatio="none"
-        className="h-full w-full max-w-4xl"
+        className="h-full w-full"
       >
         <defs>
           <linearGradient id="pj-rail" x1="0" y1="0" x2="0" y2="1">
