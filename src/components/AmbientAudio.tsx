@@ -98,11 +98,13 @@ export default function AmbientAudio() {
     window.addEventListener("scroll", kickoff, { once: true, passive: true });
     window.addEventListener("touchstart", kickoff, { once: true, passive: true });
 
-    // also attempt immediately, in case the browser allows it
-    void start();
+    // also attempt immediately (deferred so we don't call setState
+    // synchronously inside the effect), in case the browser allows autoplay
+    const eager = window.setTimeout(() => void start(), 0);
 
     return () => {
       window.clearTimeout(hintTimer);
+      window.clearTimeout(eager);
       cleanup();
       clearFade();
     };
