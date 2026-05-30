@@ -129,6 +129,14 @@ export default function PathJourney() {
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 -z-[5] flex justify-center overflow-hidden"
+      style={{
+        // Fade the road out across the central content column, keep it bright
+        // in the side margins/corners. One mask handles the whole page at once.
+        WebkitMaskImage:
+          "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
+        maskImage:
+          "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
+      }}
     >
       <svg
         viewBox={`0 0 ${VBW} ${VBH}`}
