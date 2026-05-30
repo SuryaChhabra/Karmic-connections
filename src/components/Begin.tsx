@@ -22,7 +22,7 @@ export default function Begin() {
     "w-full rounded-xl border border-gold/15 bg-void/40 px-4 py-3 text-text placeholder:text-text-faint transition-colors focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30";
 
   return (
-    <section id="begin" className="relative px-6 py-32">
+    <section id="begin" className="relative px-6 py-20">
       {/* grounding glow — like returning from the journey */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 z-0 h-64 w-64 -translate-x-1/2 rounded-full"
@@ -45,7 +45,7 @@ export default function Begin() {
           <p className="mt-4 text-lg text-text-dim">{contact.subheading}</p>
         </ScrollReveal>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-2">
+        <div className="mt-12 grid gap-10 lg:grid-cols-2">
           {/* contact details */}
           <ScrollReveal>
             <div className="flex h-full flex-col gap-5">
