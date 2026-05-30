@@ -1,4 +1,5 @@
 import StarField from "@/components/StarField";
+import AmbientAudio from "@/components/AmbientAudio";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <>
       <StarField />
+      <AmbientAudio />
       <Navbar />
       <main id="top" className="relative">
         {/* Scene 1 — The Breath */}
