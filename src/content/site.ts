@@ -28,7 +28,10 @@ export const nav = [
 
 export const about = {
   greeting: "Welcome to Karmic Connections",
-  name: "Your Therapist",
+  // Source site is anonymous ("the Therapist"). Replace with a name if desired.
+  name: "the Therapist",
+  // Therapist headshot extracted from the source material. Set to "" to hide.
+  photoSrc: "/therapist.png",
   intro:
     "The Therapist holds a Master's Degree in Psychology. He is trained by Mrs. Rashhi Sharma at Soul Conscious Lab, Bengaluru, and by Dr. Brian Weiss at the Omega Institute, New York.",
   mission:
