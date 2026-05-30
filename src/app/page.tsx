@@ -3,7 +3,6 @@ import AmbientAudio from "@/components/AmbientAudio";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Door from "@/components/Door";
 import MemoryRoom from "@/components/MemoryRoom";
 import Testimonials from "@/components/Testimonials";
 import Faq from "@/components/Faq";
@@ -21,13 +20,11 @@ export default function Home() {
         <Hero />
         {/* Scene 2 — Drifting on a cloud through the cosmos */}
         <About />
-        {/* Scene 3 — The Threshold */}
-        <Door />
-        {/* Scene 4 — The Room of Memories (the concepts + a session) */}
+        {/* Scene 3 — The Room of Memories (the concepts + a session) */}
         <MemoryRoom />
         <Testimonials />
         <Faq />
-        {/* Scene 5 — Return, grounded */}
+        {/* Scene 4 — Return, grounded */}
         <Begin />
       </main>
       <Footer />
