@@ -6,16 +6,14 @@ export default function Footer() {
     <footer className="relative border-t border-gold/10 px-6 py-16">
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          {/* full logo on a soft cream panel so the maroon text reads clearly */}
-          <div className="inline-block rounded-3xl bg-[#f7f2e9] p-6 shadow-[0_0_40px_rgba(212,175,106,0.15)]">
-            <Image
-              src="/logo_full.png"
-              alt={`${brand.name} — ${brand.subtitle}`}
-              width={1254}
-              height={1254}
-              className="h-auto w-48"
-            />
-          </div>
+          {/* full logo (cream background baked in) */}
+          <Image
+            src="/logo_footer.png"
+            alt={`${brand.name} — ${brand.subtitle}`}
+            width={1254}
+            height={1254}
+            className="h-auto w-56 rounded-3xl shadow-[0_0_40px_rgba(212,175,106,0.15)]"
+          />
           <p className="mt-5 max-w-md text-xs leading-relaxed text-text-faint">
             {disclaimer}
           </p>
