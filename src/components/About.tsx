@@ -4,7 +4,7 @@ import { about } from "@/content/site";
 
 export default function About() {
   return (
-    <section id="about" className="relative px-6 py-32">
+    <section id="about" className="relative px-6 pb-32 pt-8">
       <div className="mx-auto max-w-5xl">
         <ScrollReveal className="text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-gold/70">
