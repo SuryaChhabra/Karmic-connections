@@ -1,9 +1,10 @@
 "use client";
 
 /**
- * PathJourney — a vertical "soul road" that runs down the ENTIRE page as a
- * spine, drawn like the road in the logo (two outer rails + a dashed
- * centerline) and ending in an infinity loop (the cycle of rebirth).
+ * PathJourney — a vertical "soul road" that runs down the page as a spine,
+ * drawn like the road in the logo (two outer rails + a dashed centerline) and
+ * ending in a complete infinity loop (the cycle of rebirth) pinned at the
+ * bottom.
  *
  * Ambient effects (all self-contained here, fixed behind the content):
  *   • Light-steps     — glowing orbs travel down the road like a soul walking
@@ -11,6 +12,10 @@
  *   • Mist            — soft fog drifts across the road
  *   • Cursor sway     — the road leans subtly toward the pointer
  *   • Scroll-aware    — a brighter "you are here" glow follows your scroll
+ *
+ * The winding road is faded across the central content column (via a mask) so
+ * it never crosses text; the infinity loop sits in its own clear band at the
+ * bottom and is shown complete (unmasked).
  *
  * ─────────────────────────────────────────────────────────────────────────
  *  TO REMOVE THIS ENTIRELY: delete this file and the single <PathJourney />
@@ -20,23 +25,25 @@
 
 import { useEffect, useRef } from "react";
 
-// viewBox is 600 wide × 2200 tall. The road makes BIG sweeping S-curves down
-// the page and finishes in an endless infinity loop (figure-eight that returns
-// to its own crossing point, so there's no visible end).
+// viewBox is 600 wide × 2000 tall. The road makes BIG sweeping S-curves down
+// the page (the infinity loop is rendered separately, below, so it can be
+// shown complete without the central content mask cutting through it).
 const VBW = 600;
-const VBH = 2200;
-const PATH_D =
+const VBH = 2000;
+const ROAD_D =
   "M 300 0 " +
-  "C 660 200, 660 380, 300 520 " + // sweep right (further)
-  "C -60 660, -60 840, 300 980 " + // sweep left (further)
-  "C 660 1120, 660 1300, 300 1440 " + // sweep right (further)
-  "C -30 1620, 80 1780, 300 1850 " + // ease toward centre
-  // ── neat endless infinity loop (symmetric figure-eight, crossing at 300,1955) ──
-  "C 300 1895, 300 1920, 300 1955 " + // lead into crossing
-  "C 336 1905, 432 1915, 432 1955 " + // right loop out
-  "C 432 1995, 336 2005, 300 1955 " + // right loop back to crossing
-  "C 264 1905, 168 1915, 168 1955 " + // left loop out
-  "C 168 1995, 264 2005, 300 1955"; // left loop back to crossing
+  "C 660 200, 660 380, 300 520 " + // sweep right
+  "C -60 660, -60 840, 300 980 " + // sweep left
+  "C 660 1120, 660 1300, 300 1440 " + // sweep right
+  "C -30 1640, 80 1820, 300 2000"; // ease back to centre toward the loop
+
+// Standalone infinity loop (figure-eight) in its own 400×240 viewBox.
+const LOOP_D =
+  "M 200 120 " +
+  "C 236 66, 336 78, 336 120 " +
+  "C 336 162, 236 174, 200 120 " +
+  "C 164 66, 64 78, 64 120 " +
+  "C 64 162, 164 174, 200 120";
 
 const INHALE = 4;
 const HOLD = 2;
@@ -50,6 +57,9 @@ export default function PathJourney() {
   const groupRef = useRef<SVGGElement>(null);
   const stepsRef = useRef<SVGGElement>(null);
   const hereRef = useRef<SVGCircleElement>(null);
+  const loopRef = useRef<SVGGElement>(null);
+  const loopStepsRef = useRef<SVGGElement>(null);
+  const loopPathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -59,6 +69,11 @@ export default function PathJourney() {
     const len = rail.getTotalLength();
     const steps = Array.from(
       stepsRef.current?.querySelectorAll<SVGCircleElement>(".step") ?? []
+    );
+    const loopPath = loopPathRef.current;
+    const loopLen = loopPath?.getTotalLength() ?? 0;
+    const loopSteps = Array.from(
+      loopStepsRef.current?.querySelectorAll<SVGCircleElement>(".lstep") ?? []
     );
 
     let mx = 0;
@@ -88,6 +103,8 @@ export default function PathJourney() {
       else breath = 1 - 0.6 * easeInOut((e - INHALE - HOLD) / EXHALE);
       if (groupRef.current)
         groupRef.current.style.opacity = String(0.45 + 0.4 * breath);
+      if (loopRef.current)
+        loopRef.current.style.opacity = String(0.5 + 0.45 * breath);
 
       // cursor sway
       if (groupRef.current && !reduced) {
@@ -104,6 +121,18 @@ export default function PathJourney() {
           s.setAttribute("cy", String(pt.y));
           s.style.opacity = String(Math.sin(phase * Math.PI) * 0.9 * breath);
         });
+
+        // light-steps circling the infinity loop endlessly
+        if (loopPath) {
+          loopSteps.forEach((s, i) => {
+            const speed = 0.08;
+            const phase = (t * speed + i / loopSteps.length) % 1;
+            const pt = loopPath.getPointAtLength(phase * loopLen);
+            s.setAttribute("cx", String(pt.x));
+            s.setAttribute("cy", String(pt.y));
+            s.style.opacity = String(0.9 * breath);
+          });
+        }
       }
 
       // "you are here" glow follows scroll position down the road
@@ -126,94 +155,97 @@ export default function PathJourney() {
   }, []);
 
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-[5] flex justify-center overflow-hidden"
-      style={{
-        // Fade the road out across the central content column, keep it bright
-        // in the side margins/corners. One mask handles the whole page at once.
-        WebkitMaskImage:
-          "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
-        maskImage:
-          "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
-      }}
-    >
-      <svg
-        viewBox={`0 0 ${VBW} ${VBH}`}
-        preserveAspectRatio="none"
-        className="h-full w-full"
+    <>
+      {/* ── The winding road (faded across the central content column) ── */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-[5] flex justify-center overflow-hidden"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
+          maskImage:
+            "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
+        }}
       >
-        <defs>
-          <linearGradient id="pj-rail" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#eccf8a" />
-            <stop offset="60%" stopColor="#d4af6a" />
-            <stop offset="100%" stopColor="#6a52c4" />
-          </linearGradient>
-          <radialGradient id="pj-mist" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(180,171,214,0.16)" />
-            <stop offset="100%" stopColor="rgba(180,171,214,0)" />
-          </radialGradient>
-          <radialGradient id="pj-here" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(236,207,138,0.55)" />
-            <stop offset="100%" stopColor="rgba(236,207,138,0)" />
-          </radialGradient>
-          <filter id="pj-soft">
-            <feGaussianBlur stdDeviation="1.4" />
-          </filter>
-        </defs>
+        <svg
+          viewBox={`0 0 ${VBW} ${VBH}`}
+          preserveAspectRatio="none"
+          className="h-full w-full"
+        >
+          <defs>
+            <linearGradient id="pj-rail" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#eccf8a" />
+              <stop offset="60%" stopColor="#d4af6a" />
+              <stop offset="100%" stopColor="#6a52c4" />
+            </linearGradient>
+            <radialGradient id="pj-mist" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="rgba(180,171,214,0.16)" />
+              <stop offset="100%" stopColor="rgba(180,171,214,0)" />
+            </radialGradient>
+            <radialGradient id="pj-here" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="rgba(236,207,138,0.55)" />
+              <stop offset="100%" stopColor="rgba(236,207,138,0)" />
+            </radialGradient>
+            <filter id="pj-soft">
+              <feGaussianBlur stdDeviation="1.4" />
+            </filter>
+          </defs>
 
-        <g ref={groupRef} style={{ transition: "transform 0.5s ease-out" }}>
-          {/* drifting mist */}
-          <circle cx="150" cy="500" r="180" fill="url(#pj-mist)">
-            <animate attributeName="cy" values="200;1800;200" dur="40s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="150" cy="1200" r="200" fill="url(#pj-mist)">
-            <animate attributeName="cy" values="1900;100;1900" dur="52s" repeatCount="indefinite" />
-          </circle>
+          <g ref={groupRef} style={{ transition: "transform 0.5s ease-out" }}>
+            {/* drifting mist */}
+            <circle cx="150" cy="500" r="180" fill="url(#pj-mist)">
+              <animate attributeName="cy" values="200;1700;200" dur="40s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="150" cy="1200" r="200" fill="url(#pj-mist)">
+              <animate attributeName="cy" values="1700;100;1700" dur="52s" repeatCount="indefinite" />
+            </circle>
 
-          {/* road: two outer rails + dashed centerline, like the logo */}
-          {/* left rail */}
-          <path
-            d={PATH_D}
-            fill="none"
-            stroke="url(#pj-rail)"
-            strokeWidth={3}
-            strokeLinecap="round"
-            filter="url(#pj-soft)"
-            transform="translate(-9 0)"
-          />
-          {/* right rail */}
-          <path
-            d={PATH_D}
-            fill="none"
-            stroke="url(#pj-rail)"
-            strokeWidth={3}
-            strokeLinecap="round"
-            filter="url(#pj-soft)"
-            transform="translate(9 0)"
-          />
-          {/* dashed centerline */}
-          <path
-            ref={railRef}
-            d={PATH_D}
-            fill="none"
-            stroke="rgba(236,207,138,0.5)"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeDasharray="2 16"
-          />
+            {/* road: two outer rails + dashed centerline, like the logo */}
+            <path d={ROAD_D} fill="none" stroke="url(#pj-rail)" strokeWidth={3} strokeLinecap="round" filter="url(#pj-soft)" transform="translate(-9 0)" />
+            <path d={ROAD_D} fill="none" stroke="url(#pj-rail)" strokeWidth={3} strokeLinecap="round" filter="url(#pj-soft)" transform="translate(9 0)" />
+            <path ref={railRef} d={ROAD_D} fill="none" stroke="rgba(236,207,138,0.5)" strokeWidth={2} strokeLinecap="round" strokeDasharray="2 16" />
 
-          {/* "you are here" glow that tracks scroll */}
-          <circle ref={hereRef} r={26} fill="url(#pj-here)" />
+            {/* "you are here" glow that tracks scroll */}
+            <circle ref={hereRef} r={26} fill="url(#pj-here)" />
 
-          {/* light-steps walking the road */}
-          <g ref={stepsRef}>
-            {Array.from({ length: 7 }).map((_, i) => (
-              <circle key={i} className="step" r={3.5} fill="#f6e9c6" />
-            ))}
+            {/* light-steps walking the road */}
+            <g ref={stepsRef}>
+              {Array.from({ length: 7 }).map((_, i) => (
+                <circle key={i} className="step" r={3.5} fill="#f6e9c6" />
+              ))}
+            </g>
           </g>
-        </g>
-      </svg>
-    </div>
+        </svg>
+      </div>
+
+      {/* ── The infinity loop, shown complete in its own clear band ── */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-6 left-1/2 -z-[5] w-[340px] max-w-[80vw] -translate-x-1/2"
+      >
+        <svg viewBox="0 0 400 240" className="h-auto w-full">
+          <defs>
+            <linearGradient id="pj-loop" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#6a52c4" />
+              <stop offset="50%" stopColor="#eccf8a" />
+              <stop offset="100%" stopColor="#6a52c4" />
+            </linearGradient>
+            <filter id="pj-loop-soft">
+              <feGaussianBlur stdDeviation="1" />
+            </filter>
+          </defs>
+          <g ref={loopRef}>
+            <path d={LOOP_D} fill="none" stroke="url(#pj-loop)" strokeWidth={3} strokeLinecap="round" filter="url(#pj-loop-soft)" transform="translate(-7 0)" />
+            <path d={LOOP_D} fill="none" stroke="url(#pj-loop)" strokeWidth={3} strokeLinecap="round" filter="url(#pj-loop-soft)" transform="translate(7 0)" />
+            <path ref={loopPathRef} d={LOOP_D} fill="none" stroke="rgba(236,207,138,0.55)" strokeWidth={2} strokeLinecap="round" strokeDasharray="2 14" />
+            <g ref={loopStepsRef}>
+              {Array.from({ length: 4 }).map((_, i) => (
+                <circle key={i} className="lstep" r={3.5} fill="#f6e9c6" />
+              ))}
+            </g>
+          </g>
+        </svg>
+      </div>
+    </>
   );
 }

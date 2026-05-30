@@ -22,7 +22,7 @@ export default function Begin() {
     "w-full rounded-xl border border-gold/15 bg-void/40 px-4 py-3 text-text placeholder:text-text-faint transition-colors focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30";
 
   return (
-    <section id="begin" className="relative px-6 py-20">
+    <section id="begin" className="relative px-6 pt-20 pb-56">
       {/* grounding glow — like returning from the journey */}
       <div
         className="pointer-events-none absolute left-1/2 top-0 z-0 h-64 w-64 -translate-x-1/2 rounded-full"
