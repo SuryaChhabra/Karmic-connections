@@ -6,9 +6,9 @@ export default function Footer() {
     <footer className="relative border-t border-gold/10 px-6 py-16">
       <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          {/* full logo (cream background baked in) */}
+          {/* full logo (cream background) */}
           <Image
-            src="/logo_footer.png"
+            src="/footer.png"
             alt={`${brand.name} — ${brand.subtitle}`}
             width={1254}
             height={1254}
