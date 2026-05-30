@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import MemoryRoom from "@/components/MemoryRoom";
+import PathJourney from "@/components/PathJourney"; // remove this line to drop the path feature
 import Testimonials from "@/components/Testimonials";
 import Faq from "@/components/Faq";
 import Begin from "@/components/Begin";
@@ -22,6 +23,8 @@ export default function Home() {
         <About />
         {/* Scene 3 — The Room of Memories (the concepts + a session) */}
         <MemoryRoom />
+        {/* The soul path — ambient, interactive. Remove this line + its import to drop it. */}
+        <PathJourney />
         <Testimonials />
         <Faq />
         {/* Scene 4 — Return, grounded */}
