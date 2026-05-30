@@ -28,12 +28,11 @@ export const nav = [
 
 export const about = {
   greeting: "Welcome to Karmic Connections",
-  // Source site is anonymous ("the Therapist"). Replace with a name if desired.
-  name: "the Therapist",
+  name: "Capt. Yogesh Chhabra",
   // Therapist headshot extracted from the source material. Set to "" to hide.
   photoSrc: "/therapist.png",
   intro:
-    "The Therapist holds a Master's Degree in Psychology. He is trained by Mrs. Rashhi Sharma at Soul Conscious Lab, Bengaluru, and by Dr. Brian Weiss at the Omega Institute, New York.",
+    "Capt. Yogesh Chhabra holds a Master's Degree in Psychology. He is trained by Mrs. Rashhi Sharma at Soul Conscious Lab, Bengaluru, and by Dr. Brian Weiss at the Omega Institute, New York.",
   mission:
     "He is also a certified Hypnotherapist with the National Guild of Hypnotists, USA — guiding each soul gently toward healing and spiritual growth.",
   approach:
