@@ -34,6 +34,12 @@ export default function InfinityLoop() {
     const path = pathRef.current;
     if (!path) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // phones: render the loop static (skip the per-frame animation loop)
+    if (
+      reduced ||
+      window.matchMedia("(max-width: 768px), (pointer: coarse)").matches
+    )
+      return;
     const len = path.getTotalLength();
     const steps = Array.from(
       stepsRef.current?.querySelectorAll<SVGCircleElement>(".lstep") ?? []

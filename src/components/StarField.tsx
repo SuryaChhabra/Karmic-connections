@@ -27,6 +27,11 @@ export default function StarField() {
     if (!ctx) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // On phones, render the starfield ONCE (no per-frame redraw / scroll
+    // parallax) — the continuous canvas loop is the main mobile lag source.
+    const staticMode =
+      reduced ||
+      window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
     let stars: Star[] = [];
     let w = 0;
@@ -79,7 +84,7 @@ export default function StarField() {
         y = ((y % (h * 1.6)) + h * 1.6) % (h * 1.6); // wrap → endless field
         if (y > h) continue;
 
-        const twinkle = reduced ? 1 : 0.6 + 0.4 * Math.sin(t * s.tws + s.tw);
+        const twinkle = staticMode ? 1 : 0.6 + 0.4 * Math.sin(t * s.tws + s.tw);
         const alpha = s.base * twinkle;
         const gold = s.z > 0.82;
 
@@ -100,17 +105,21 @@ export default function StarField() {
         }
       }
 
-      raf = requestAnimationFrame(draw);
+      if (!staticMode) raf = requestAnimationFrame(draw);
     };
 
     const onScroll = () => {
       scrollY = window.scrollY;
     };
-    const onResize = () => build();
+    const onResize = () => {
+      build();
+      if (staticMode) draw(); // re-render the single frame after a resize
+    };
 
     build();
     draw();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // scroll parallax only matters when animating (desktop)
+    if (!staticMode) window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
 
     return () => {

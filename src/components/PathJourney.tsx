@@ -54,6 +54,12 @@ export default function PathJourney() {
     const rail = railRef.current;
     if (!rail) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // On phones, skip the continuous animation (light-steps, breathing,
+    // cursor sway, scroll glow) — the road still shows, just static.
+    const lowPower =
+      reduced ||
+      window.matchMedia("(max-width: 768px), (pointer: coarse)").matches;
+    if (lowPower) return;
 
     const len = rail.getTotalLength();
     const steps = Array.from(
