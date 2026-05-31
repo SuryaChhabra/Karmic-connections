@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
- * Fades + lifts children into view as they enter the viewport.
- * Pure IntersectionObserver — no dependencies.
+ * Fades + lifts children into view as they enter the viewport (desktop only).
+ *
+ * On phones (small screen / coarse pointer) or with reduced-motion, the fade is
+ * skipped entirely — content renders immediately visible, so nothing can ever
+ * get stuck blank if the observer is slow to fire.
  */
 export default function ScrollReveal({
   children,
@@ -18,8 +21,20 @@ export default function ScrollReveal({
   as?: keyof React.JSX.IntrinsicElements;
 }) {
   const ref = useRef<HTMLElement>(null);
+  // start animated only on capable (desktop) clients; default false so SSR /
+  // mobile render fully visible with no dependency on JS firing.
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.matchMedia(
+      "(max-width: 768px), (pointer: coarse)"
+    ).matches;
+
+    if (reduced || isMobile) return; // stay fully visible, no fade
+
+    setAnimate(true);
+
     const el = ref.current;
     if (!el) return;
 
@@ -37,14 +52,21 @@ export default function ScrollReveal({
     );
 
     io.observe(el);
-    return () => io.disconnect();
+
+    // safety net: if the observer hasn't revealed it within 1.5s, show anyway
+    const safety = window.setTimeout(() => el.classList.add("is-visible"), 1500);
+
+    return () => {
+      io.disconnect();
+      window.clearTimeout(safety);
+    };
   }, [delay]);
 
   const Component = Tag as React.ElementType;
   return (
     <Component
       ref={ref as React.Ref<HTMLElement>}
-      className={`reveal ${className}`}
+      className={`${animate ? "reveal" : ""} ${className}`}
     >
       {children}
     </Component>
