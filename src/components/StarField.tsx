@@ -146,7 +146,9 @@ export default function StarField() {
             "radial-gradient(40% 35% at 18% 30%, rgba(75,58,143,0.35), transparent 70%), radial-gradient(45% 40% at 82% 65%, rgba(212,175,106,0.10), transparent 70%)",
         }}
       />
-      <canvas ref={canvasRef} className="absolute inset-0" />
+      {/* canvas hidden on phones — large fixed canvas triggers iOS Safari
+          repaint bugs that can blank scrolled content. Gradient wash stays. */}
+      <canvas ref={canvasRef} className="absolute inset-0 hidden md:block" />
     </div>
   );
 }

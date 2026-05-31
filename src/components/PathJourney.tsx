@@ -132,10 +132,12 @@ export default function PathJourney() {
 
   return (
     <>
-      {/* ── The winding road (faded across the central content column) ── */}
+      {/* ── The winding road (faded across the central content column) ──
+          Hidden on phones: this large, full-page blurred SVG triggers iOS
+          Safari paint bugs that can blank scrolled content. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-[5] flex justify-center overflow-hidden"
+        className="pointer-events-none absolute inset-0 -z-[5] hidden justify-center overflow-hidden md:flex"
         style={{
           WebkitMaskImage:
             "linear-gradient(to right, #000 0%, #000 24%, transparent 40%, transparent 60%, #000 76%, #000 100%)",
