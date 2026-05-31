@@ -24,6 +24,11 @@ export default function Hero() {
         }}
       />
 
+      {/* TEMP DEPLOY TEST — remove after confirming it reaches the phone */}
+      <div className="mb-4 rounded-full bg-red-600 px-4 py-1 text-sm font-bold text-white">
+        TEST v2 ✅
+      </div>
+
       <p className="mb-6 text-base font-bold uppercase tracking-[0.18em] text-gold sm:text-lg md:text-xl">
         {brand.subtitle}
       </p>
