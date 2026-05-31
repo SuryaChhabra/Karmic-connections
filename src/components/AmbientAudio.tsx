@@ -113,7 +113,9 @@ export default function AmbientAudio() {
 
   return (
     <>
-      <audio ref={audioRef} src={SRC} loop preload="auto" />
+      {/* preload="none" so the ~5MB file only downloads when sound is started,
+          keeping initial mobile page loads fast */}
+      <audio ref={audioRef} src={SRC} loop preload="none" />
 
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
         {/* gentle one-time nudge */}

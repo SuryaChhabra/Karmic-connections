@@ -46,7 +46,9 @@ export default function StarField() {
       canvas.style.height = h + "px";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.floor((w * h) / 6500);
+      // fewer stars on small screens to save mobile CPU/battery
+      const density = w < 768 ? 14000 : 6500;
+      const count = Math.floor((w * h) / density);
       stars = Array.from({ length: count }, () => {
         const z = Math.random();
         return {
@@ -62,6 +64,11 @@ export default function StarField() {
     };
 
     const draw = () => {
+      // pause work when the tab/page is hidden (saves battery on mobile)
+      if (document.hidden) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
       ctx.clearRect(0, 0, w, h);
       t += 0.016;
 
