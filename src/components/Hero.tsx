@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section
       id="breath"
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-20 text-center"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 py-20 text-center"
     >
       {/* two soft orbs drifting on either side */}
       <div
