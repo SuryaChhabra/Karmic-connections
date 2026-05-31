@@ -190,3 +190,17 @@ h1, h2, h3, h4, .font-serif {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ─── Mobile animation kill-switch ───
+   Phones lag from continuous CSS keyframe animations (floating cards, pulsing
+   halos, shimmer) running forever. On small screens, stop all looping
+   animations so scrolling stays smooth. Content/visuals are unchanged — they
+   just hold still. */
+@media (max-width: 768px) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
