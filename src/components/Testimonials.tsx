@@ -53,9 +53,13 @@ export default function Testimonials() {
                 <blockquote className="flex-1 text-base leading-relaxed text-text-dim">
                   {t.quote}
                 </blockquote>
-                <figcaption className="mt-6 border-t border-gold/10 pt-4 text-sm">
-                  <span className="text-gold-bright">{t.author}</span>
-                  {t.place && <span className="text-text-faint"> · {t.place}</span>}
+                <figcaption className="mt-6 border-t border-gold/10 pt-4">
+                  <span className="font-serif text-xl text-gold-bright">
+                    {t.author}
+                  </span>
+                  {t.place && (
+                    <span className="ml-1 text-sm text-text-faint">· {t.place}</span>
+                  )}
                 </figcaption>
               </figure>
             </ScrollReveal>
