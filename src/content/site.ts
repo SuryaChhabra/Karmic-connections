@@ -48,6 +48,7 @@ export const about = {
 export type Concept = {
   title: string;
   blurb: string;
+  more?: string; // optional extra text revealed by a "Show more" toggle
   glyph: string;
 };
 
@@ -56,7 +57,9 @@ export const concepts: Concept[] = [
   {
     title: "Journey of a Soul",
     blurb:
-      "Each soul is a packet of energy, intrinsically part of God itself, embarking on its unique journey through many lifetimes. Through the cycle of life and death, it leaves and collects fragments of energy shaped by attachment, greed, lust, and anger.",
+      "Each soul is a packet of energy, intrinsically part of God itself. This soul embarks on its unique journey through various lifetimes. During the cycle of Life and Death in these physical realms, it continuously leaves and collects fragments of energy influenced by vices such as attachment, greed, lust, and anger.",
+    more:
+      "These experiences leave a mark on the soul, altering its tendencies for future journeys. The soul reincarnates based on its foundational tendencies, and the journey in each life is guided by soul guides, facilitating spiritual growth and learning lessons through diverse situations. If a soul struggles to pass these tests, it faces increasingly challenging circumstances until it achieves the realization of specific lessons and releases itself from particular tendencies, ultimately moving towards a purified state. As the soul charts its own path, it also determines the kind of parents it is born to, ensuring maximum alignment with the situations it seeks to explore. Techniques such as hypnotherapy and past life regression can aid in uncovering these past experiences, promoting deeper understanding and growth.",
     glyph: "✦",
   },
   {

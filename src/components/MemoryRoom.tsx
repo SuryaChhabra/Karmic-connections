@@ -1,4 +1,5 @@
 import ScrollReveal from "./ScrollReveal";
+import ConceptCard from "./ConceptCard";
 import { concepts, plr } from "@/content/site";
 
 export default function MemoryRoom() {
@@ -19,32 +20,10 @@ export default function MemoryRoom() {
         </ScrollReveal>
 
         {/* concepts as floating memory-wisps */}
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid items-start gap-6 md:grid-cols-3">
           {concepts.map((c, i) => (
             <ScrollReveal key={c.title} delay={(i % 3) * 120}>
-              <article
-                className="group relative h-full overflow-hidden rounded-3xl border border-gold/10 bg-indigo/20 p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35"
-                style={{ animation: `floatSlow ${10 + i * 2}s ease-in-out infinite` }}
-              >
-                {/* glow that wakes on hover */}
-                <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/0 blur-2xl transition-all duration-500 group-hover:bg-gold/20" />
-
-                <div
-                  className="flex h-14 w-14 items-center justify-center rounded-full text-2xl text-gold-bright"
-                  style={{
-                    background:
-                      "radial-gradient(circle at 35% 30%, rgba(236,207,138,0.25), rgba(106,82,196,0.15) 70%, transparent)",
-                    boxShadow: "0 0 24px rgba(212,175,106,0.25)",
-                  }}
-                >
-                  {c.glyph}
-                </div>
-
-                <h3 className="mt-6 font-serif text-2xl text-text">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-dim">
-                  {c.blurb}
-                </p>
-              </article>
+              <ConceptCard concept={c} index={i} />
             </ScrollReveal>
           ))}
         </div>
