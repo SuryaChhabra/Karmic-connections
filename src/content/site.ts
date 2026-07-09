@@ -65,13 +65,17 @@ export const concepts: Concept[] = [
   {
     title: "Karmic Connections",
     blurb:
-      "The path of a soul, life after life, can be seen as one great loop. These loops intersect with those of other souls; as paths cross and souls share time, they earn karma through their mutual actions — binding them to return and make things whole.",
+      "The path of a soul through life after life can be visualized as one big loop. Each soul moves along its unique journey, and these loops intersect with those of other souls. As these paths cross and the souls spend time together, they earn karma through their mutual actions in various situations.",
+    more:
+      "This karma binds them to repay any wrongs or goods done to others, leading to the formation of Karmic connections. Similar to chemical bonds, these connections can be strong or weak, depending on the mutual karma shared by the souls. Engaging in practices like hypnotherapy or past life regression can aid in understanding these connections. We can also achieve spiritual growth by forgiving and forgetting the actions of others, which helps us relieve ourselves of these karmic bonds.",
     glyph: "∞",
   },
   {
     title: "Regression through Hypnosis",
     blurb:
-      "The subconscious holds every memory of a soul's previous lifetimes, yet rarely releases them. In past life regression, we gently work with the subconscious mind while the soul is guided by its soul guides to understand and heal.",
+      "The subconscious mind holds all the memories of a soul's previous lifetimes, but it does not release those memories as such. These past life impressions continue to guide a soul's journey. In hypnotherapy, particularly during past life regression sessions, we work upon the subconscious mind while the soul is guided by its soul guides to uncover significant events and impressions.",
+    more:
+      "To achieve this, we take the individual into a state of mind known as the 'Alpha state' and then into the 'Theta state.' In these states, a person is neither completely asleep nor fully awake, and it is scientifically proven that one can easily reach and remain in these states through a simple relaxation process. Subsequently, using various techniques, the individual is guided through a process in which the subconscious mind opens up, helping the person according to her intention. The intention of the individual undergoing therapy is crucial, as it directly influences the desired results. This can be seen as the soul realizing its faults and seeking to release certain karmas through forgetfulness, forgiveness, and remorse, ultimately fostering spiritual growth.",
     glyph: "☾",
   },
 ];
