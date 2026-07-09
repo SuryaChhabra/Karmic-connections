@@ -16,6 +16,9 @@ function Stars({ n = 5 }: { n?: number }) {
 export default function Testimonials() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  const visible = showAll ? testimonials : testimonials.slice(0, 3);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,7 +49,7 @@ export default function Testimonials() {
         </ScrollReveal>
 
         <div className="mt-12 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t, i) => (
+          {visible.map((t, i) => (
             <ScrollReveal key={t.author} delay={(i % 3) * 140}>
               <figure className="flex h-full flex-col rounded-3xl glass p-8">
                 <Stars n={t.rating ?? 5} />
@@ -66,14 +69,28 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Leave a review */}
-        <ScrollReveal className="mt-12 text-center">
+        {/* Show more / fewer + Leave a review */}
+        <ScrollReveal
+          className={`mt-12 text-center ${
+            open
+              ? "block"
+              : "flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          }`}
+        >
+          {testimonials.length > 3 && !open && (
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="rounded-full bg-gradient-to-r from-gold-bright to-gold px-8 py-3 font-medium text-void shadow-[0_0_30px_rgba(212,175,106,0.35)] transition-transform hover:scale-105"
+            >
+              {showAll ? "Show fewer" : `Show all ${testimonials.length} reviews`}
+            </button>
+          )}
           {!open ? (
             <button
               onClick={() => setOpen(true)}
               className="rounded-full border border-gold/40 px-7 py-3 text-base text-gold-bright transition-all hover:border-gold hover:bg-gold/10"
             >
-              Share Your Experience
+              Leave a Review
             </button>
           ) : (
             <form
