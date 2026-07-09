@@ -82,7 +82,7 @@ export default function Testimonials() {
               onClick={() => setShowAll((v) => !v)}
               className="rounded-full bg-gradient-to-r from-gold-bright to-gold px-8 py-3 font-medium text-void shadow-[0_0_30px_rgba(212,175,106,0.35)] transition-transform hover:scale-105"
             >
-              {showAll ? "Show fewer" : `Show all ${testimonials.length} reviews`}
+              {showAll ? "Show fewer" : "Show more reviews"}
             </button>
           )}
           {!open ? (
