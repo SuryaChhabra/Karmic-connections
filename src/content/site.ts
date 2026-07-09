@@ -140,6 +140,18 @@ export const testimonials: Testimonial[] = [
     author: "Varsha Patel",
     rating: 5,
   },
+  {
+    quote:
+      "Dear Yogesh ji, being a past life regression therapist, you are a true professional. You have really helped me in resolving unsolved problems of my life. Many sessions you took progressively, I got all my answers. Thank you so much for really helping me.",
+    author: "Abhielasha Singh",
+    rating: 5,
+  },
+  {
+    quote:
+      "I was very impressed by Capt. Yogesh's professionalism. He was very kind and caring. He actually changed my life for good. I recommend him 100%.",
+    author: "Laura Shehan",
+    rating: 5,
+  },
 ];
 
 export const faqs = [
