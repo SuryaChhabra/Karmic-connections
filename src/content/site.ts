@@ -50,6 +50,7 @@ export type Concept = {
   blurb: string;
   more?: string; // optional extra text revealed by a "Show more" toggle
   glyph: string;
+  image?: string; // optional banner image at the top of the card (in /public)
 };
 
 /** The three core teachings from the site, shown as floating "memories". */
@@ -61,6 +62,7 @@ export const concepts: Concept[] = [
     more:
       "These experiences leave a mark on the soul, altering its tendencies for future journeys. The soul reincarnates based on its foundational tendencies, and the journey in each life is guided by soul guides, facilitating spiritual growth and learning lessons through diverse situations. If a soul struggles to pass these tests, it faces increasingly challenging circumstances until it achieves the realization of specific lessons and releases itself from particular tendencies, ultimately moving towards a purified state. As the soul charts its own path, it also determines the kind of parents it is born to, ensuring maximum alignment with the situations it seeks to explore. Techniques such as hypnotherapy and past life regression can aid in uncovering these past experiences, promoting deeper understanding and growth.",
     glyph: "✦",
+    image: "/journey-road.jpg",
   },
   {
     title: "Karmic Connections",
