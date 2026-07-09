@@ -69,8 +69,11 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Show more / fewer + Leave a review */}
-        <ScrollReveal
+        {/* Show more / fewer + Leave a review
+            (plain div, NOT ScrollReveal — a re-render here must not reset the
+            reveal's JS-added visibility class, which caused the form to flash
+            and disappear on click.) */}
+        <div
           className={`mt-12 text-center ${
             open
               ? "block"
@@ -128,7 +131,7 @@ export default function Testimonials() {
               </p>
             </form>
           )}
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );
