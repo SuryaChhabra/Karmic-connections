@@ -18,9 +18,9 @@ export const brand = {
 };
 
 export const nav = [
-  { label: "The Breath", href: "#breath" },
   { label: "About", href: "#about" },
   { label: "Concepts", href: "#memories" },
+  { label: "Therapies", href: "#therapies" },
   { label: "Voices", href: "#voices" },
   { label: "Questions", href: "#faq" },
   { label: "Contact", href: "#begin" },
@@ -81,6 +81,37 @@ export const concepts: Concept[] = [
       "To achieve this, we take the individual into a state of mind known as the 'Alpha state' and then into the 'Theta state.' In these states, a person is neither completely asleep nor fully awake, and it is scientifically proven that one can easily reach and remain in these states through a simple relaxation process. Subsequently, using various techniques, the individual is guided through a process in which the subconscious mind opens up, helping the person according to her intention. The intention of the individual undergoing therapy is crucial, as it directly influences the desired results. This can be seen as the soul realizing its faults and seeking to release certain karmas through forgetfulness, forgiveness, and remorse, ultimately fostering spiritual growth.",
     glyph: "☾",
     image: "/regression.jpg",
+  },
+];
+
+/** The specific therapy modalities offered, shown like the concept cards. */
+export const therapies: Concept[] = [
+  {
+    title: "Age Regression",
+    blurb:
+      "A soul moves on from one life to another, and any moment it has lived through becomes past for it. Age regression is a process of going back to a significant event in space and time in the present lifetime — it could be just an hour back.",
+    more:
+      "A person is taken to the very moments which the therapist is guided to, to get them the healing. Again here, the subconscious mind is the one which holds the solution. Our conscious mind just sees things at the surface level, very superficially, and is not ready to grasp the depth of the problem — it just does not want to! Hence it is at the level of the subconscious mind that one has to intervene and see the whole situation and get the solution.",
+    glyph: "◷",
+    image: "/age-regression.jpg",
+  },
+  {
+    title: "Inner Child Healing",
+    blurb:
+      "A person in his childhood in the present lifetime is subjected to various conditions and situations. These are sometimes destined to happen and sometimes accidental results of others' karma. Any such condition however leaves a marked impression on a child's subconscious mind.",
+    more:
+      "This needs to be relieved. Such memories usually do not surface at the conscious mind level and again need to be taken care of at the subconscious level. Most of it is not remembered only. A subject is taken back to space and time in childhood and is healed in those circumstances. The lesson which was to be learnt by the soul is learnt and life moves ahead. Inner child healing is the most important part of PLR and hypnotherapy, as the marks left in childhood could be deep and painful and yet forgotten at the conscious level.",
+    glyph: "❋",
+    image: "/inner-child.jpg",
+  },
+  {
+    title: "Past Life Regression",
+    blurb:
+      "Past Life Regression is, in essence, revisiting your previous lifetimes to heal yourself through your strong willpower and intentions — to clean up your negative energy and at the same time be benefited by collecting the positive energy.",
+    more:
+      "As discussed in the Hypnotherapy section, a subject is relaxed to an extent so as to make him reach the theta stage, and then the subconscious is suggested to take to the time and space which is significant to know for the subject, to know the root cause of the problem at hand. A closure is done by the therapist as per the guidance by the soul guides. It is never expected that a full lifetime shall run like a movie; rather it is expected to come in flashes relating to specific times in that lifetime which are connected to the present life problems. One gets rid of the present life problem by self-remorse on one's own wrongdoings, forgetfulness of the pains given by deeds of others, and forgiveness to them. It's a very simple exercise which leads to the realization of the continuity of life.",
+    glyph: "✦",
+    image: "/past-life.jpg",
   },
 ];
 
