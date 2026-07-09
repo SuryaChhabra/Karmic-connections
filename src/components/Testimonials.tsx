@@ -26,10 +26,15 @@ export default function Testimonials() {
     const name = String(data.get("name") || "");
     const rating = String(data.get("rating") || "5");
     const review = String(data.get("review") || "");
-    const body = [`Name: ${name}`, `Rating: ${rating}/5`, "", review].join("\n");
-    window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(
-      `Review from ${name}`
-    )}&body=${encodeURIComponent(body)}`;
+    const stars = "★".repeat(Number(rating)) || "★★★★★";
+    // Send via WhatsApp — opens reliably on phone and desktop (mailto often
+    // does nothing when no default mail app is set).
+    const msg = `Review for Karmic Connections\n\nName: ${name}\nRating: ${stars} (${rating}/5)\n\n${review}`;
+    window.open(
+      `https://wa.me/${contact.phoneRaw}?text=${encodeURIComponent(msg)}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
     setSent(true);
   };
 
@@ -124,10 +129,10 @@ export default function Testimonials() {
                 type="submit"
                 className="mt-5 w-full rounded-full bg-gradient-to-r from-gold-bright to-gold px-8 py-3 font-medium text-void transition-transform hover:scale-[1.02]"
               >
-                {sent ? "Opening your message…" : "Send Review"}
+                {sent ? "Opening WhatsApp…" : "Send via WhatsApp"}
               </button>
               <p className="mt-3 text-center text-xs text-text-faint">
-                Your email app opens with the review ready to send to us.
+                WhatsApp opens with your review ready to send to us.
               </p>
             </form>
           )}
