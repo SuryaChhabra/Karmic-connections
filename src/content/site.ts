@@ -71,6 +71,7 @@ export const concepts: Concept[] = [
     more:
       "This karma binds them to repay any wrongs or goods done to others, leading to the formation of Karmic connections. Similar to chemical bonds, these connections can be strong or weak, depending on the mutual karma shared by the souls. Engaging in practices like hypnotherapy or past life regression can aid in understanding these connections. We can also achieve spiritual growth by forgiving and forgetting the actions of others, which helps us relieve ourselves of these karmic bonds.",
     glyph: "∞",
+    image: "/karmic-connections.jpg",
   },
   {
     title: "Regression through Hypnosis",
@@ -79,6 +80,7 @@ export const concepts: Concept[] = [
     more:
       "To achieve this, we take the individual into a state of mind known as the 'Alpha state' and then into the 'Theta state.' In these states, a person is neither completely asleep nor fully awake, and it is scientifically proven that one can easily reach and remain in these states through a simple relaxation process. Subsequently, using various techniques, the individual is guided through a process in which the subconscious mind opens up, helping the person according to her intention. The intention of the individual undergoing therapy is crucial, as it directly influences the desired results. This can be seen as the soul realizing its faults and seeking to release certain karmas through forgetfulness, forgiveness, and remorse, ultimately fostering spiritual growth.",
     glyph: "☾",
+    image: "/regression.jpg",
   },
 ];
 
