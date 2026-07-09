@@ -93,7 +93,6 @@ export const therapies: Concept[] = [
     more:
       "A person is taken to the very moments which the therapist is guided to, to get them the healing. Again here, the subconscious mind is the one which holds the solution. Our conscious mind just sees things at the surface level, very superficially, and is not ready to grasp the depth of the problem — it just does not want to! Hence it is at the level of the subconscious mind that one has to intervene and see the whole situation and get the solution.",
     glyph: "◷",
-    image: "/age-regression.jpg",
   },
   {
     title: "Inner Child Healing",
@@ -102,7 +101,6 @@ export const therapies: Concept[] = [
     more:
       "This needs to be relieved. Such memories usually do not surface at the conscious mind level and again need to be taken care of at the subconscious level. Most of it is not remembered only. A subject is taken back to space and time in childhood and is healed in those circumstances. The lesson which was to be learnt by the soul is learnt and life moves ahead. Inner child healing is the most important part of PLR and hypnotherapy, as the marks left in childhood could be deep and painful and yet forgotten at the conscious level.",
     glyph: "❋",
-    image: "/inner-child.jpg",
   },
   {
     title: "Past Life Regression",
@@ -111,7 +109,6 @@ export const therapies: Concept[] = [
     more:
       "As discussed in the Hypnotherapy section, a subject is relaxed to an extent so as to make him reach the theta stage, and then the subconscious is suggested to take to the time and space which is significant to know for the subject, to know the root cause of the problem at hand. A closure is done by the therapist as per the guidance by the soul guides. It is never expected that a full lifetime shall run like a movie; rather it is expected to come in flashes relating to specific times in that lifetime which are connected to the present life problems. One gets rid of the present life problem by self-remorse on one's own wrongdoings, forgetfulness of the pains given by deeds of others, and forgiveness to them. It's a very simple exercise which leads to the realization of the continuity of life.",
     glyph: "✦",
-    image: "/past-life.jpg",
   },
 ];
 
