@@ -100,27 +100,45 @@ export const plr = {
   duration: "Sessions are held with care, at a pace that feels right for you.",
 };
 
-export type Testimonial = { quote: string; author: string; place: string };
+export type Testimonial = {
+  quote: string;
+  author: string;
+  place?: string;
+  rating?: number;
+};
 
-/** No testimonials were published on the source site yet — placeholders. */
+/** Real reviews (from Google). */
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "I came carrying a fear I could never explain. I left understanding where it began — and finally free of it.",
-    author: "A. S.",
-    place: "Delhi",
+      "I met Captain Yogesh at the Omega Institute where we both trained with Dr. Brian Weiss, and I am so deeply grateful that I did. He is a beautiful soul and a bright light in this world. He is kind, caring & compassionate, professional, respectful and courteous throughout the entire process. He was extremely attentive and listened deeply throughout the entire session. I received deep healing from my session with him and I would highly recommend him for inner child healing or any other healing you need. 🙏",
+    author: "Jennifer Baloga",
+    rating: 5,
   },
   {
     quote:
-      "The session was calm and safe throughout. I felt guided, never controlled. It changed how I see my life.",
-    author: "R. K.",
-    place: "Mumbai",
+      "There are a few questions that are unanswered in life, which quiz you. During my PLRT session with Capt. Yogesh, I got the answers to my repetitive concern on the subject and was able to understand my behavior and from where it's stemming. The long, comfortable, excellent, and revealing session helped me in removing those concerns forever which ultimately led to a better personal and professional life. I highly recommend the sessions to everyone who has those unanswered questions.",
+    author: "Dr. Rahul Sharma",
+    place: "Ahmedabad",
+    rating: 5,
   },
   {
     quote:
-      "Understanding my karmic connections brought a peace to my relationships I didn't know was possible.",
-    author: "M. T.",
-    place: "Bengaluru",
+      "I had a session with Capt Yogesh a few months back. Objective of the session was to find reason of an ailment in childhood. I experienced three past lives. Captured some moments of different stages of the past lives. This experience gave me insight into my spiritual journey. I thank Capt Yogesh for the educative session.",
+    author: "Aman Seth",
+    rating: 5,
+  },
+  {
+    quote:
+      "I got a very new perspective about the challenge I was going through. Thanks to Yogi ji for that. His PLR session was very useful for me. It helped me clear unwanted energies from my system and it taught me to let go. His approach, his guidance and suggestions were of great help. Thank u 👍",
+    author: "Rashmi G.S.",
+    rating: 5,
+  },
+  {
+    quote:
+      "Yogeshji is very professional and thorough in his work. He is polite, courteous and a good listener. Recently had an excellent session with Yogeshji. I feel blessed to have met such a soul. I highly appreciate his work and ethics with which he connects to people.",
+    author: "Varsha Patel",
+    rating: 5,
   },
 ];
 
